@@ -2,15 +2,16 @@
 
 const express = require('express');
 const { Pool } = require('./db/pool.js');
-const { getQuestion, getAllQuestions, createQuestion, deleteQuestion, updateQuestion } = require('./controller/controllers.js')
+const { getQuiz, getAllQuizes, createQuiz, deleteQuiz, updateQuiz, deleteAllQuizes} = require('./controller/controllers.js');
 
-const app = express();
+const router = express();
 const jsonParse = express.json();
 
-app.get('/question/:id', getQuestion);
-app.get('/questions/', getAllQuestions);
-app.post('/question/', jsonParse, createQuestion);
-app.put('/question/:id', jsonParse, updateQuestion);
-app.delete('/question/:id', deleteQuestion);
+router.get('/quiz/:id', getQuiz);
+router.get('/quizes/', getAllQuizes);
+router.post('/quiz/', jsonParse, createQuiz);
+router.put('/quiz/:id', jsonParse, updateQuiz);
+router.delete('/quiz/:id', deleteQuiz);
+router.delete('/quizes/', deleteAllQuizes);
 
-app.listen(3000);
+router.listen(3000);
