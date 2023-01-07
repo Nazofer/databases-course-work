@@ -1,37 +1,36 @@
 # Тестування працездатності системи
 
-## GET-запит для отримання всіх питань з бази
+## Використовується розширення ThunderClient в середовищі розробки Visual Studio Code
 
-<img width="849" alt="Знімок екрана 2023-01-04 о 12 13 42" src="https://user-images.githubusercontent.com/89911844/210533054-66da522b-0768-4cb4-8b08-8ec393c2d821.png">
+## GET-запит для отримання всіх опитувань з бази
 
-## GET-запит для отримання одного питання з конкретним ID
+![1](https://user-images.githubusercontent.com/89912149/211170391-9042da50-f662-46b9-b915-b652b30afdb9.jpg)
 
-<img width="848" alt="Знімок екрана 2023-01-04 о 12 15 19" src="https://user-images.githubusercontent.com/89911844/210533170-980daf3f-0035-4220-b4e4-2c737280a096.png">
 
-## POST-запит для створення одного питання, при цьому ID інкрементується автоматично
+## GET-запит для отримання одного опитування з конкретним ID
 
-<img width="853" alt="Знімок екрана 2023-01-04 о 12 16 44" src="https://user-images.githubusercontent.com/89911844/210533457-a849f9e5-f230-40fc-ac86-903294e5fd02.png">
+![2](https://user-images.githubusercontent.com/89912149/211170402-75c2791d-9cb6-4585-8dff-b48a0a98e896.jpg)
 
-### GET-запит для перевірки створення питання
+## POST-запит для створення одного опитування, при цьому ID інкрементується автоматично, а також генерується дата
 
-<img width="855" alt="Знімок екрана 2023-01-04 о 12 18 01" src="https://user-images.githubusercontent.com/89911844/210533682-2e8e5301-a569-4042-9b37-a9cf532e8f2c.png">
+![3](https://user-images.githubusercontent.com/89912149/211170405-9a216e63-b643-495f-a5cb-85e6a135b4f9.jpg)
 
-## PUT-запит для оновлення питання
+### GET-запит для перевірки створення опитування
 
-### Оновляємо питання з ID=14
+![4](https://user-images.githubusercontent.com/89912149/211170422-5b6f6a18-2c15-4f00-a9f9-6d54bab0f55a.jpg)
 
-<img width="850" alt="Знімок екрана 2023-01-04 о 12 19 51" src="https://user-images.githubusercontent.com/89911844/210534088-03c4e456-a4ec-4c07-a7c1-d7bb11946bc1.png">
+## PUT-запит для оновлення опитування
 
-### GET-запит для перевірки оновлення питання з ID=14
+![5](https://user-images.githubusercontent.com/89912149/211170440-e172ac54-1ab9-4da2-87b4-b29b5a6c53b3.jpg)
 
-<img width="851" alt="Знімок екрана 2023-01-04 о 12 20 09" src="https://user-images.githubusercontent.com/89911844/210534249-ac74d9a3-abab-456d-bd41-822353cd0c28.png">
+### GET-запит для перевірки оновлення опитування з ID=10
 
-## DELETE-запит для видалення питання з бази
+![6](https://user-images.githubusercontent.com/89912149/211170444-a679108c-dc20-4eed-a0a4-9cd26ed0abe9.jpg)
 
-### Видалення питання з ID=14
+## DELETE-запит для видалення опитування з бази
 
-<img width="625" alt="Знімок екрана 2023-01-04 о 12 22 39" src="https://user-images.githubusercontent.com/89911844/210534456-9d0b4cd6-b6bc-4a27-b55f-e1d8708a489a.png">
+![7](https://user-images.githubusercontent.com/89912149/211170452-4bfae3ef-fbec-41da-8361-f997d34ed3e3.jpg)
 
-### GET-запит для перевірки видалення питання з ID=14
+### GET-запит для перевірки видалення опитування з ID=10
 
-<img width="847" alt="Знімок екрана 2023-01-04 о 12 23 22" src="https://user-images.githubusercontent.com/89911844/210534594-2d10f216-9c86-4e6a-9128-3b3527ea5ca2.png">
+![8](https://user-images.githubusercontent.com/89912149/211170463-c5e501a8-743c-49fe-8d59-cba499dcf050.jpg)
