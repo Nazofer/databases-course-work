@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Реалізація інформаційного та програмного забезпечення | 1. Система організації та управління опитуваннями експертів</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/databases-course-work/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Курсова робота з дисципліни "Бази даних"">
+    
+    <link rel="preload" href="/databases-course-work/assets/css/0.styles.6fcd69da.css" as="style"><link rel="preload" href="/databases-course-work/assets/js/app.a798a20b.js" as="script"><link rel="preload" href="/databases-course-work/assets/js/2.cfc015ec.js" as="script"><link rel="preload" href="/databases-course-work/assets/js/22.a602646e.js" as="script"><link rel="prefetch" href="/databases-course-work/assets/js/10.5d5296ab.js"><link rel="prefetch" href="/databases-course-work/assets/js/11.7227b195.js"><link rel="prefetch" href="/databases-course-work/assets/js/12.d9af3753.js"><link rel="prefetch" href="/databases-course-work/assets/js/13.b8dd9aae.js"><link rel="prefetch" href="/databases-course-work/assets/js/14.f76bc3b8.js"><link rel="prefetch" href="/databases-course-work/assets/js/15.8e42f321.js"><link rel="prefetch" href="/databases-course-work/assets/js/16.cacbf329.js"><link rel="prefetch" href="/databases-course-work/assets/js/17.a5b7aebe.js"><link rel="prefetch" href="/databases-course-work/assets/js/18.6dc84105.js"><link rel="prefetch" href="/databases-course-work/assets/js/19.2a70d17d.js"><link rel="prefetch" href="/databases-course-work/assets/js/20.c7491f69.js"><link rel="prefetch" href="/databases-course-work/assets/js/21.03e88604.js"><link rel="prefetch" href="/databases-course-work/assets/js/23.1bea1234.js"><link rel="prefetch" href="/databases-course-work/assets/js/24.f159aed3.js"><link rel="prefetch" href="/databases-course-work/assets/js/25.4d9e7944.js"><link rel="prefetch" href="/databases-course-work/assets/js/26.87ff770b.js"><link rel="prefetch" href="/databases-course-work/assets/js/3.2c27ece5.js"><link rel="prefetch" href="/databases-course-work/assets/js/4.5042fbeb.js"><link rel="prefetch" href="/databases-course-work/assets/js/5.8b0efd2b.js"><link rel="prefetch" href="/databases-course-work/assets/js/6.fc1daab8.js"><link rel="prefetch" href="/databases-course-work/assets/js/7.0dd66219.js"><link rel="prefetch" href="/databases-course-work/assets/js/8.e2d1a40b.js"><link rel="prefetch" href="/databases-course-work/assets/js/9.cce8dc66.js">
+    <link rel="stylesheet" href="/databases-course-work/assets/css/0.styles.6fcd69da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/databases-course-work/" class="home-link router-link-active"><!----> <span class="site-name">1. Система організації та управління опитуваннями експертів</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/databases-course-work/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/Nazofer/databases-course-work" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/databases-course-work/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/Nazofer/databases-course-work" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/databases-course-work/intro/" class="sidebar-link">Вступ</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/databases-course-work/requirements/" class="sidebar-heading clickable"><span>Розроблення загальних вимог до системи</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/databases-course-work/use%20cases/" class="sidebar-link">Розроблення вимог до функціональности системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#_1-діаграма-прецедентів" class="sidebar-link">1) Діаграма прецедентів.</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#_2-схеми-використання-для-гостя" class="sidebar-link">2) Схеми використання для гостя.</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#_3-схеми-використання-для-користувача" class="sidebar-link">3) Схеми використання для користувача.</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#_4-схеми-використання-для-експерта" class="sidebar-link">4) Схеми використання для експерта.</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#_5-сценаріі-використання-для-незареєстрованого-користувача" class="sidebar-link">5) Сценарії використання для незареєстрованого користувача.</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/use%20cases/#_6-сценаріі-використання-для-зареєстрованого-користувача" class="sidebar-link">6) Сценарії використання для зареєстрованого користувача.</a></li></ul></li><li><a href="/databases-course-work/design/" class="sidebar-link">Проектування інформаційного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/design/#модель-бізнес-обʼєктів" class="sidebar-link">Модель бізнес-обʼєктів</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/design/#er-модель" class="sidebar-link">ER-модель</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/design/#реляціина-схема" class="sidebar-link">Реляційна схема</a></li></ul></li><li><a href="/databases-course-work/software/" aria-current="page" class="active sidebar-link">Реалізація інформаційного та програмного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/software/#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="sidebar-link">SQL-скрипт для створення на початкового наповнення бази даних</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#restfull-сервіс-для-управління-даними" class="sidebar-link">RESTfull сервіс для управління даними</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/software/#вхідна-точка-проєкту" class="sidebar-link">Вхідна точка проєкту:</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#підключення-до-бази-даних" class="sidebar-link">Підключення до бази даних:</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#контролери" class="sidebar-link">Контролери:</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/software/#модель" class="sidebar-link">Модель:</a></li></ul></li></ul></li><li><a href="/databases-course-work/test/" class="sidebar-link">Тестування працездатності системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/test/#використовується-розширення-thunderclient-в-середовищі-розробки-visual-studio-code" class="sidebar-link">Використовується розширення ThunderClient в середовищі розробки Visual Studio Code</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#get-запит-для-отримання-всіх-опитувань-з-бази" class="sidebar-link">GET-запит для отримання всіх опитувань з бази</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#get-запит-для-отримання-одного-опитування-з-конкретним-id" class="sidebar-link">GET-запит для отримання одного опитування з конкретним ID</a></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#post-запит-для-створення-одного-опитування-при-цьому-id-інкрементується-автоматично-а-також-генерується-дата" class="sidebar-link">POST-запит для створення одного опитування, при цьому ID інкрементується автоматично, а також генерується дата</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/test/#get-запит-для-перевірки-створення-опитування" class="sidebar-link">GET-запит для перевірки створення опитування</a></li></ul></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#put-запит-для-оновлення-опитування" class="sidebar-link">PUT-запит для оновлення опитування</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/test/#get-запит-для-перевірки-оновлення-опитування-з-id-10" class="sidebar-link">GET-запит для перевірки оновлення опитування з ID=10</a></li></ul></li><li class="sidebar-sub-header"><a href="/databases-course-work/test/#delete-запит-для-видалення-опитування-з-бази" class="sidebar-link">DELETE-запит для видалення опитування з бази</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/databases-course-work/test/#get-запит-для-перевірки-видалення-опитування-з-id-10" class="sidebar-link">GET-запит для перевірки видалення опитування з ID=10</a></li></ul></li></ul></li><li><a href="/databases-course-work/conclusion/" class="sidebar-link">Висновки</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="реалізація-інформаціиного-та-програмного-забезпечення"><a href="#реалізація-інформаціиного-та-програмного-забезпечення" class="header-anchor">#</a> Реалізація інформаційного та програмного забезпечення</h1> <p>В рамках проекту розробляється:</p> <h2 id="sql-скрипт-для-створення-на-початкового-наповнення-бази-даних"><a href="#sql-скрипт-для-створення-на-початкового-наповнення-бази-даних" class="header-anchor">#</a> SQL-скрипт для створення на початкового наповнення бази даних</h2> <div class="language- extra-class"><pre class="language-text"><code>-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema survey-db
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `survey-db` ;
+
+-- -----------------------------------------------------
+-- Schema survey-db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `survey-db` DEFAULT CHARACTER SET utf8 ;
+USE `survey-db` ;
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`users` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`experts`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`experts` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`experts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `job` VARCHAR(45) NOT NULL,
+  `users_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_experts_users_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_experts_users`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `survey-db`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`quizes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`quizes` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`quizes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `text` VARCHAR(45) NULL,
+  `expiration_date` DATETIME NOT NULL,
+  `users_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_quiz_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_quiz_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `survey-db`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`questions`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`questions` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`questions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `text` VARCHAR(45) NOT NULL,
+  `type` INT NOT NULL,
+  `quiz_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_questions_quiz1_idx` (`quiz_id` ASC) VISIBLE,
+  CONSTRAINT `fk_questions_quiz1`
+    FOREIGN KEY (`quiz_id`)
+    REFERENCES `survey-db`.`quizes` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`options`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`options` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`options` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `text` VARCHAR(45) NOT NULL,
+  `questions_id` INT NOT NULL,
+  `isCorrect` TINYINT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_answers_questions1_idx` (`questions_id` ASC) VISIBLE,
+  CONSTRAINT `fk_answers_questions1`
+    FOREIGN KEY (`questions_id`)
+    REFERENCES `survey-db`.`questions` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.` options`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.` options` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.` options` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `text` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`selected_options`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`selected_options` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`selected_options` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  ` options_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_selected_options_ options1_idx` (` options_id` ASC) VISIBLE,
+  CONSTRAINT `fk_selected_options_ options1`
+    FOREIGN KEY (` options_id`)
+    REFERENCES `survey-db`.` options` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`users_has_quiz`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`users_has_quiz` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`users_has_quiz` (
+  `users_id` INT NOT NULL,
+  `quiz_id` INT NOT NULL,
+  PRIMARY KEY (`users_id`, `quiz_id`),
+  INDEX `fk_users_has_quiz_quiz1_idx` (`quiz_id` ASC) VISIBLE,
+  INDEX `fk_users_has_quiz_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_quiz_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `survey-db`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_quiz_quiz1`
+    FOREIGN KEY (`quiz_id`)
+    REFERENCES `survey-db`.`quizes` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`users_has_quiz1`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`users_has_quiz1` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`users_has_quiz1` (
+  `users_id` INT NOT NULL,
+  `quiz_id` INT NOT NULL,
+  PRIMARY KEY (`users_id`, `quiz_id`),
+  INDEX `fk_users_has_quiz1_quiz1_idx` (`quiz_id` ASC) VISIBLE,
+  INDEX `fk_users_has_quiz1_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_quiz1_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `survey-db`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_quiz1_quiz1`
+    FOREIGN KEY (`quiz_id`)
+    REFERENCES `survey-db`.`quizes` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`quiz_states`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`quiz_states` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`quiz_states` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `state_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`quiz_actions`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`quiz_actions` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`quiz_actions` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `at` DATETIME NOT NULL,
+  `quizes_id` INT NOT NULL,
+  `quiz_states_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_quiz_states_quizes1_idx` (`quizes_id` ASC) VISIBLE,
+  INDEX `fk_quiz_actions_quiz_states1_idx` (`quiz_states_id` ASC) VISIBLE,
+  CONSTRAINT `fk_quiz_states_quizes1`
+    FOREIGN KEY (`quizes_id`)
+    REFERENCES `survey-db`.`quizes` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_quiz_actions_quiz_states1`
+    FOREIGN KEY (`quiz_states_id`)
+    REFERENCES `survey-db`.`quiz_states` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`results`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`results` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`results` (
+  `id` INT NOT NULL,
+  `options_id` INT NOT NULL,
+  `experts_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_results_answers1_idx` (`options_id` ASC) VISIBLE,
+  INDEX `fk_results_experts1_idx` (`experts_id` ASC) VISIBLE,
+  CONSTRAINT `fk_results_answers1`
+    FOREIGN KEY (`options_id`)
+    REFERENCES `survey-db`.`options` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_results_experts1`
+    FOREIGN KEY (`experts_id`)
+    REFERENCES `survey-db`.`experts` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`experts_has_results`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`experts_has_results` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`experts_has_results` (
+  `experts_id` INT NOT NULL,
+  `results_id` INT NOT NULL,
+  PRIMARY KEY (`experts_id`, `results_id`),
+  INDEX `fk_experts_has_results_results1_idx` (`results_id` ASC) VISIBLE,
+  INDEX `fk_experts_has_results_experts1_idx` (`experts_id` ASC) VISIBLE,
+  CONSTRAINT `fk_experts_has_results_experts1`
+    FOREIGN KEY (`experts_id`)
+    REFERENCES `survey-db`.`experts` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_experts_has_results_results1`
+    FOREIGN KEY (`results_id`)
+    REFERENCES `survey-db`.`results` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`results_has_experts`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`results_has_experts` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`results_has_experts` (
+  `results_id` INT NOT NULL,
+  `experts_id` INT NOT NULL,
+  PRIMARY KEY (`results_id`, `experts_id`),
+  INDEX `fk_results_has_experts_experts1_idx` (`experts_id` ASC) VISIBLE,
+  INDEX `fk_results_has_experts_results1_idx` (`results_id` ASC) VISIBLE,
+  CONSTRAINT `fk_results_has_experts_results1`
+    FOREIGN KEY (`results_id`)
+    REFERENCES `survey-db`.`results` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_results_has_experts_experts1`
+    FOREIGN KEY (`experts_id`)
+    REFERENCES `survey-db`.`experts` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `survey-db`.`experts_has_results1`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `survey-db`.`experts_has_results1` ;
+
+CREATE TABLE IF NOT EXISTS `survey-db`.`experts_has_results1` (
+  `experts_id` INT NOT NULL,
+  `results_id` INT NOT NULL,
+  PRIMARY KEY (`experts_id`, `results_id`),
+  INDEX `fk_experts_has_results1_results1_idx` (`results_id` ASC) VISIBLE,
+  INDEX `fk_experts_has_results1_experts1_idx` (`experts_id` ASC) VISIBLE,
+  CONSTRAINT `fk_experts_has_results1_experts1`
+    FOREIGN KEY (`experts_id`)
+    REFERENCES `survey-db`.`experts` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_experts_has_results1_results1`
+    FOREIGN KEY (`results_id`)
+    REFERENCES `survey-db`.`results` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+</code></pre></div><h2 id="restfull-сервіс-для-управління-даними"><a href="#restfull-сервіс-для-управління-даними" class="header-anchor">#</a> RESTfull сервіс для управління даними</h2> <h3 id="вхідна-точка-проєкту"><a href="#вхідна-точка-проєкту" class="header-anchor">#</a> Вхідна точка проєкту:</h3> <div class="language- extra-class"><pre class="language-text"><code>'use strict';
+
+const express = require('express');
+const { Pool } = require('./db/pool.js');
+const { getQuiz, getAllQuizes, createQuiz, deleteQuiz, updateQuiz, deleteAllQuizes} = require('./controller/controllers.js');
+
+const router = express();
+const jsonParse = express.json();
+
+router.get('/quiz/:id', getQuiz);
+router.get('/quizes/', getAllQuizes);
+router.post('/quiz/', jsonParse, createQuiz);
+router.put('/quiz/:id', jsonParse, updateQuiz);
+router.delete('/quiz/:id', deleteQuiz);
+router.delete('/quizes/', deleteAllQuizes);
+
+router.listen(3000);
+</code></pre></div><h3 id="підключення-до-бази-даних"><a href="#підключення-до-бази-даних" class="header-anchor">#</a> Підключення до бази даних:</h3> <div class="language- extra-class"><pre class="language-text"><code>'use strict';
+
+const mysql = require('mysql2');
+
+const Pool = mysql.createConnection({
+  host: &quot;localhost&quot;,
+  user: &quot;root&quot;,
+  password: &quot;nazar11224&quot;,
+  database: &quot;surveydb&quot;
+});
+
+module.exports = { Pool };
+</code></pre></div><h3 id="контролери"><a href="#контролери" class="header-anchor">#</a> Контролери:</h3> <div class="language- extra-class"><pre class="language-text"><code>'use strict';
+
+const { sql, executeSql } = require('../model/model');
+
+
+const getQuiz = (req, res) =&gt; {
+  executeSql(sql.readQuiz(req.params), res);
+};
+
+const getAllQuizes = (req, res) =&gt; {
+  executeSql(sql.readAllQuizes(), res);
+};
+
+const createQuiz = (req, res) =&gt; {
+  if (!req.body) return res.sendStatus(400);
+  const date = new Date();
+  const isoDate = date.toISOString().slice(0, 19).replace('T', ' ');
+  const uid = Math.floor(1000 + Math.random() * 9000);
+  executeSql(sql.createQuiz(req.body.text, isoDate, uid), res);
+};
+
+const deleteQuiz = (req, res) =&gt; {
+  executeSql(sql.deleteQuiz(req.params), res);
+};
+
+const updateQuiz = (req, res) =&gt; {
+  if (!req.body) return res.sendStatus(400);
+  const date = new Date();
+  const isoDate = date.toISOString().slice(0, 19).replace('T', ' ');
+  const uid = Math.floor(1000 + Math.random() * 9000);
+  executeSql(sql.updateQuiz(req.params.id, req.body.text, isoDate, uid), res);
+};
+
+const deleteAllQuizes = (req, res) =&gt; {
+  executeSql(sql.deleteAllQuizes(), res)
+}
+
+module.exports = { getQuiz, getAllQuizes, createQuiz, deleteQuiz, updateQuiz, deleteAllQuizes };
+</code></pre></div><h3 id="модель"><a href="#модель" class="header-anchor">#</a> Модель:</h3> <div class="language- extra-class"><pre class="language-text"><code>'use strict';
+
+const { Pool } = require('../db/pool');
+
+const sql = {
+  createQuiz: (text, date, uid ) =&gt; {
+    return `INSERT INTO surveydb.quizes (id, text, date, user_id) VALUES (${null}, \&quot;${text}\&quot;, \&quot;${date}\&quot;, ${uid})`;
+  },
+  readQuiz: ({ id }) =&gt; `SELECT * FROM surveydb.quizes WHERE id = ${id}`,
+  readAllQuizes: () =&gt; `SELECT * FROM surveydb.quizes`,
+  updateQuiz: ( id, text, date, uid ) =&gt; {
+    return `UPDATE surveydb.quizes SET text = \&quot;${text}\&quot;, date = \&quot;${date}\&quot;, user_id = ${uid} WHERE id = ${id}`;
+  },
+  deleteQuiz: ({ id }) =&gt; `DELETE FROM surveydb.quizes WHERE id = ${id}`,
+  deleteAllQuizes: () =&gt; `DELETE FROM surveydb.quizes`,
+};
+
+const executeSql = (sql, res) =&gt; {
+  Pool.query(sql, (error, result) =&gt; {
+    if (error) return res.status(500).json(error);
+    result ? res.send(result) : res.sendStatus(404);
+  });
+};
+
+module.exports = { sql, executeSql };
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">1/7/2023, 10:58:53 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/databases-course-work/design/" class="prev">
+        Проектування інформаційного забезпечення
+      </a></span> <span class="next"><a href="/databases-course-work/test/">
+        Тестування працездатності системи
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/databases-course-work/assets/js/app.a798a20b.js" defer></script><script src="/databases-course-work/assets/js/2.cfc015ec.js" defer></script><script src="/databases-course-work/assets/js/22.a602646e.js" defer></script>
+  </body>
+</html>
